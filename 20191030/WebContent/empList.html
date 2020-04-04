@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			url : "EmpServlet?action=list",
+			dataType : "json", //지정x경우 파싱필요
+			success : function(result) { //결과값 result에 담아요
+				console.log(result);
+				showTable(result);
+			}
+		})
+	});
+
+	function showTable(elem) {
+		var table, tr, tr, td;
+		table = $("<table />").attr("border", "1");
+		tr = $("<tr />");
+		// t head
+		th = $("<th/>").text("empNo");
+		tr.append(th);
+		th = $("<th/>").text("FirstName");
+		tr.append(th);
+		th = $("<th/>").text("LastName");
+		tr.append(th);
+		th = $("<th/>").text("delete");
+		tr.append(th);
+		table.append(tr);
+
+		// t data
+		for (var i = 0; i < elem.length; i++) {
+			tr = $("<tr />");
+			var aTag = $("<a />").attr("href",
+					"updateForm.jsp?empId=" + elem[i].employeeId);//링크는 updateForm.jsp로 연결되고, empId값을 파라미터로 넘겨줌
+			td = $("<td />").html(aTag.text(elem[i].employeeId));
+			tr.append(td);
+			td = $("<td />").text(elem[i].firstName);
+			tr.append(td);
+			td = $("<td />").text(elem[i].lastName);
+			tr.append(td);
+			var $input = $("<button />").attr({
+				"id" : elem[i].employeeId
+			}).text("삭제");
+			td = $("<td />").html($input.click(delFunc));
+			tr.append(td);
+			table.append(tr);
+		}
+		$("#show").append(table);
+	}
+
+	function delFunc() {
+		var empId = $(this).attr("id"); 
+		$.ajax({
+			url : "EmpServlet", //http요청 보낼 서버주소
+			data : { //페이지 요청하면서 넘길 데이터
+				"action" : "delete",
+				"employee_id" : empId
+			},
+			success : function() {
+				console.log("completed");
+				$("#" + empId).parent().parent().remove();
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="show"></div>
+</body>
+</html>

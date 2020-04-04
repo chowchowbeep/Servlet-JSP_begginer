@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>20191029</display-name>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>Hello</servlet-name> 
+		<servlet-class>co.micol.comon.TestServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Hello</servlet-name>
+		<url-pattern>*.do</url-pattern> 
+		<!-- 해당url로 들어오면 동일한 서블릿명을 찾아 해당 클래스 실행 -->
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>ArrayTest</servlet-name> 
+		<servlet-class>co.micol.comon.ArrayTest</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ArrayTest</servlet-name>
+		<url-pattern>/Array.do</url-pattern> 
+	</servlet-mapping>
+
+	
+	
+	
+	<servlet>
+	<!-- 초기화 파라미터 설정_xml에서 기술 -->
+		<servlet-name>ParamInit</servlet-name> 
+		<servlet-class>co.micol.comon.ParamTest</servlet-class>
+		<init-param>
+			<param-name>id</param-name>
+			<param-value>long</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pw</param-name>
+			<param-value>4565</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ParamInit</servlet-name>
+		<url-pattern>/ll</url-pattern> 
+	</servlet-mapping>
+</web-app>
+

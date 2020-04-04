@@ -1,0 +1,31 @@
+@charset "UTF-8";
+#menubar {
+	text-align:center;
+}
+ul {
+	
+	height: 20px;
+	background: skyblue;
+	list-style: none;
+	padding: 15px;
+	display:inline-block;
+	*display:inline; 
+	zoom:1;
+}
+
+ul li {
+	
+	float: left;
+	margin-right: 10px;
+	font-family: dotum;
+	margin-left:-1px; 
+	z-index:1;
+}
+
+ul li a {
+	font-size: 12px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none
+}
+
